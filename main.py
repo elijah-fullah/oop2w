@@ -1,20 +1,19 @@
-#Importing my FASTAPI library
+#Importing FastAPI Library
 from fastapi import FastAPI
 
-#Create app
+#Creating the App
 app = FastAPI()
 
 #Get Method
 @app.get("/students/{student_id}")
 
 #Function
-async def home(student_id: int):
-    #Return Message
-    student = {
-        1: {"name": "fatu", 'grade': 'a'},
-
+async def get_all_students(student_id: int):
+    students = {
+        1: {'name': 'Salome', 'grade': 'A'},
     }
-    if student_id in student:
-        return {"student_id": student_id, **student[student_id]}
+
+    if student_id in students:
+        return {"student_id": student_id, **students[student_id]}
     else:
-        return {"Error": f"Student with id {student_id} does not exist"}
+        return {'Error': f'Student with id {student_id} not found!'}
